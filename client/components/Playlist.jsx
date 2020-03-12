@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Track from "./Track";
+import Tuneables from './Tuneables';
 
 
 class Playlist extends Component {
     
   render() {
+    
     const { tracks } = this.props;
-    console.log(tracks)
     // song array
     // const trackList = tracks.map((song, i) => {
     //     // const artists = song.artists.map(artist => artist.name)
@@ -22,10 +23,19 @@ class Playlist extends Component {
     for (let i = 0; i < tracks.length; i++) {
         trackList.push(<Track key={i} track={tracks[i]}  /> )
     }
-  
     
-    return (
-      <div> {trackList}  </div>
+    // if user hasn't gotten a playlist yet
+    if (tracks.length === 0) {
+      return (
+        <div> Hello! </div>           
+        )
+    } else return (
+        <div>
+          <div> {this.props.name} </div>
+          <button> Refresh Recommendations </button>
+          <Tuneables tracks={tracks} name={this.props.name}/>
+          <div> {trackList}  </div>
+        </div>
     )
   }
    
