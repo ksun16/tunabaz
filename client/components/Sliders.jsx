@@ -3,22 +3,21 @@ import React from 'react';
 const Sliders = (props) => {
     return (
         <div> 
-            <input type={'range'} id={'tempo'} name={'tempo'} defaultValue={null} onChange={()=>props.handleChange(event, `tempo`)} min={0} max={250} />
             <label htmlFor={'tempo'}>Tempo</label>
-            <input type={'range'} id={'danceability'} name={'danceability'} defaultValue={null} onChange={()=>props.handleChange(event, `danceability`)} min={0} max={100} />
+            <input type={'range'} id={'tempo'} name={'tempo'} defaultValue={null} onChange={()=>props.handleChange(event, `tempo`)} min={0} max={250} /> <br/>
             <label htmlFor={'danceability'}>Danceability</label>
-            <input type={'range'} id={'valence'} name={'valence'} defaultValue={null} onChange={()=>props.handleChange(event, `valence`)} min={0} max={100} />
+            <input type={'range'} id={'danceability'} name={'danceability'} defaultValue={null} onChange={()=>props.handleChange(event, `danceability`)} min={0} max={100} /> <br/>
             <label htmlFor={'valence'}>Valence</label>
-            <input type={'range'} id={'popularity'} name={'popularity'} defaultValue={null} onChange={()=>props.handleChange(event, `popularity`)} min={0} max={100} />
+            <input type={'range'} id={'valence'} name={'valence'} defaultValue={null} onChange={()=>props.handleChange(event, `valence`)} min={0} max={100} /> <br/>
             <label htmlFor={'popularity'}>Popularity</label>
-            <input type={'range'} id={'energy'} name={'energy'} defaultValue={null} onChange={()=>props.handleChange(event, `energy`)} min={0} max={100} />
+            <input type={'range'} id={'popularity'} name={'popularity'} defaultValue={null} onChange={()=>props.handleChange(event, `popularity`)} min={0} max={100} /> <br/>
             <label htmlFor={'energy'}>Energy</label>
-            <input type={'range'} id={'acousticness'} name={'acousticness'} defaultValue={null} onChange={()=>props.handleChange(event, `acousticness`)} min={0} max={100} />
+            <input type={'range'} id={'energy'} name={'energy'} defaultValue={null} onChange={()=>props.handleChange(event, `energy`)} min={0} max={100} /> <br/>
             <label htmlFor={'acousticness'}>Acousticness</label>
-            <input type={'range'} id={'instrumentalness'} name={'instrumentalness'} defaultValue={null} onChange={()=>props.handleChange(event, `instrumentalness`)} min={0} max={100} />
+            <input type={'range'} id={'acousticness'} name={'acousticness'} defaultValue={null} onChange={()=>props.handleChange(event, `acousticness`)} min={0} max={100} /> <br/>
             <label htmlFor={'instrumentalness'}>Instrumentalness</label>
-
-
+            <input type={'range'} id={'instrumentalness'} name={'instrumentalness'} defaultValue={null} onChange={()=>props.handleChange(event, `instrumentalness`)} min={0} max={100} />
+    
         </div>
     )
 }

@@ -92,6 +92,7 @@ class App extends Component{
     return(
       <div className="App">
         <h1> :) </h1>
+        <h2><strong> {this.state.name} </strong></h2>
         <a href='http://localhost:8888'>
             <button>Login with Spotify</button>
         </a>

@@ -83,12 +83,16 @@ class Playlist extends Component {
         <div> Hello! </div>           
         )
     } else return (
-        <div>
-          <div> {this.props.name} </div>
+        <div id="playlist">
+          <div id="tracks"> <strong>Stats</strong>
             <Tuneables tracks={tracks} name={this.props.name} attributes={this.props.attributes}/> 
+            <div> <strong>Tracks</strong> {trackList}  </div>
+          </div>
+          <div id="recs"> <strong>Recommended Tracks</strong>
             <Sliders attributes={this.props.attributes} handleChange={this.handleChange} sliders={this.state.sliders}/>
             <div> <button onClick={()=>this.getRecs()}> Refresh Recommendations </button> {this.state.recommendations} </div>
-          <div> {trackList}  </div>
+          </div>
+           
         </div>
     )
   }
