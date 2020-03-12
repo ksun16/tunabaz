@@ -7,7 +7,7 @@ const Track = (props) => {
     return (
     <div> 
         <img src={image} width={50}/>
-        {track.name} {artists} 
+        {track.name} by {artists} 
     </div>
     )
 }
