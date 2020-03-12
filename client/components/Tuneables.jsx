@@ -10,6 +10,8 @@ const Tuneables = (props) => {
                  <li>Valence: {Number.parseFloat(attributes.valence).toFixed(2) * 100}</li>
                  <li>Popularity: {Number.parseFloat(attributes.popularity).toFixed()}</li>
                  <li>Energy: {Number.parseFloat(attributes.energy).toFixed(2) * 100}</li>
+                 <li>Acousticness: {Number.parseFloat(attributes.acousticness).toFixed(2) * 100}</li>
+                 <li>Instrumentalness: {Number.parseFloat(attributes.instrumentalness).toFixed(2) * 100}</li>
             </ul>
         </div>
     )
