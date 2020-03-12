@@ -33,7 +33,7 @@ class Playlist extends Component {
         <div>
           <div> {this.props.name} </div>
           <button> Refresh Recommendations </button>
-          <Tuneables tracks={tracks} name={this.props.name}/>
+            <Tuneables tracks={tracks} name={this.props.name} attributes={this.props.attributes}/> 
           <div> {trackList}  </div>
         </div>
     )

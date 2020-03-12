@@ -16,6 +16,7 @@ class App extends Component{
           loggedIn: params.access_token ? true : false,
           playlist: [],
           name: '',
+          attributes: {}
       }
       if (params.access_token) {
         spotifyApi.setAccessToken(params.access_token);
@@ -42,18 +43,15 @@ class App extends Component{
       spotifyApi.getPlaylistTracks(result.items[0].id)
       .then(result => {
         const playlist = result.items.map(el => el.track)
-        this.setState({playlist: playlist})
-
-        
-
+        this.setState({playlist: playlist}) ;
+        this.getAttributes();       
       })
     })
     .catch((err) => console.error('Error getting playlists'));
   }
 
   getAttributes() {
-    console.log('getting attributes')
-    const name = this.props.name;
+    console.log('getting attributes in app')
     // Get trackIDs
     const trackIDs = this.state.playlist.map(track => track.id);
     const attributesObj = {
@@ -69,9 +67,8 @@ class App extends Component{
         tempo: [],
         valence: []
     }
-    console.log(attributesObj)
     // Fill popularity array
-    attributesObj.popularity = this.props.tracks.map(track => track.popularity);
+    attributesObj.popularity = this.state.playlist.map(track => track.popularity);
     // Make API call to get the other attributes
     spotifyApi.getAudioFeaturesForTracks(trackIDs)
     .then(result => {
@@ -82,25 +79,14 @@ class App extends Component{
         if(key != 'popularity') result.audio_features.forEach(el => attributesObj[key].push(el[key]));
       })    
       // Convert to arrays to means using forEach and reduce
-      Object.keys(attributesObj).forEach(key => attributesObj[key] = attributesObj[key].reduce((a,b) => a + b) / this.props.tracks.length);
+      Object.keys(attributesObj).forEach(key => attributesObj[key] = attributesObj[key].reduce((a,b) => a + b) / this.state.playlist.length);
       // Set state w/ conditional to avoid inf loop
-    
+
       this.setState({
-        acousticness: attributesObj.acousticness,
-        danceability: attributesObj.danceability,
-        duration: attributesObj.duration_ms,
-        energy: attributesObj.energy,
-        instrumentalness: attributesObj.instrumentalness,
-        liveness: attributesObj.liveness,
-        mode: attributesObj.mode,
-        popularity: attributesObj.popularity,
-        speechiness: attributesObj.speechiness,
-        tempo: attributesObj.tempo,
-        valence: attributesObj.valence,
-        name: name
+        attributes: attributesObj
       })
       
-      
+      console.log(this.state)
     })
     .catch(err => console.err('Error getting audio attributes'))
   }
@@ -115,7 +101,7 @@ class App extends Component{
         <button onClick={() => this.getPlaylist()}>
           Get Playlist
         </button>
-        <Playlist tracks={this.state.playlist} name={this.state.name}/>
+        <Playlist tracks={this.state.playlist} name={this.state.name} attributes={this.state.attributes}/>
       </div>
     );
   }
