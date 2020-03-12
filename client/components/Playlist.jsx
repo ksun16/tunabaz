@@ -59,7 +59,7 @@ class Playlist extends Component {
     spotifyApi.getRecommendations(validParams)
     .then(result => {
         // Fill array of <Track> elements to render
-        const recommendedTracks = result.tracks.map((track, i) => <Track key={i} track={track}/>);
+        const recommendedTracks = result.tracks.map((track, i) => <Track key={i} track={track}  addSong={this.props.addSong}/>);
         // Set state
         this.setState({ recommendations: recommendedTracks })
     })
@@ -74,7 +74,7 @@ class Playlist extends Component {
     // Array of <Tracks> to render for current playlist
     const trackList = [];
     for (let i = 0; i < tracks.length; i++) {
-        trackList.push(<Track key={i} track={tracks[i]}  /> )
+        trackList.push(<Track key={i} track={tracks[i]} /> )
     }
         
     // if user hasn't gotten a playlist yet

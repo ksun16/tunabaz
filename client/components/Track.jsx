@@ -6,7 +6,7 @@ const Track = (props) => {
     const image = track.album.images[0].url;
     return (
     <div> 
-        <img src={image} width={50}/>
+        <img src={image} width={50} onClick={() => props.addSong([track.uri])}/>
         {track.name} by {artists} 
     </div>
     )

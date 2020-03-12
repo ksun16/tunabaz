@@ -15,14 +15,15 @@ class App extends Component{
           // is user logged in?
           loggedIn: params.access_token ? true : false,
           playlist: [],
+          playlistID: '',
           name: '',
           attributes: {},
           token: params.access_token,
       }
       if (params.access_token) {
         spotifyApi.setAccessToken(params.access_token);
-    
       }
+      this.addSong = this.addSong.bind(this);
   }
 
 // Gets access token
@@ -41,6 +42,7 @@ class App extends Component{
     .then(result => {
       // Set name and get playlist
       this.setState({name: result.items[0].name})
+      this.setState({playlistID: result.items[0].id})
       spotifyApi.getPlaylistTracks(result.items[0].id)
       .then(result => {
         const playlist = result.items.map(el => el.track)
@@ -87,6 +89,12 @@ class App extends Component{
     })
     .catch(err => console.err('Error getting audio attributes'))
   }
+   
+  addSong(trackURI) {
+    console.log(this.state.playlistID)
+    spotifyApi.addTracksToPlaylist(this.state.playlistID, trackURI)
+    .then(this.getPlaylist());
+  }
 
   render() {
     return(
@@ -99,7 +107,7 @@ class App extends Component{
         <button onClick={() => this.getPlaylist()}>
           Get Playlist
         </button>
-        <Playlist tracks={this.state.playlist} name={this.state.name} attributes={this.state.attributes} token={this.state.token}/>
+        <Playlist tracks={this.state.playlist} name={this.state.name} attributes={this.state.attributes} token={this.state.token} addSong={this.addSong}/>
       </div>
     );
   }
