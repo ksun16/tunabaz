@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Track from "./Track";
 import Tuneables from './Tuneables';
+import Recommendations from './Recommendations';
 
 
 class Playlist extends Component {
@@ -32,8 +33,9 @@ class Playlist extends Component {
     } else return (
         <div>
           <div> {this.props.name} </div>
-          <button> Refresh Recommendations </button>
+         
             <Tuneables tracks={tracks} name={this.props.name} attributes={this.props.attributes}/> 
+            <div> <button> Refresh Recommendations </button> <Recommendations tracks={tracks} attributes={this.props.attributes} token={this.props.token}/> </div>
           <div> {trackList}  </div>
         </div>
     )

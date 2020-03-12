@@ -16,7 +16,8 @@ class App extends Component{
           loggedIn: params.access_token ? true : false,
           playlist: [],
           name: '',
-          attributes: {}
+          attributes: {},
+          token: params.access_token,
       }
       if (params.access_token) {
         spotifyApi.setAccessToken(params.access_token);
@@ -44,6 +45,7 @@ class App extends Component{
       .then(result => {
         const playlist = result.items.map(el => el.track)
         this.setState({playlist: playlist}) ;
+        // within this .then, the getAttributes method makes another API call
         this.getAttributes();       
       })
     })
@@ -52,7 +54,7 @@ class App extends Component{
 
   getAttributes() {
     console.log('getting attributes in app')
-    // Get trackIDs
+    // Get trackIDs from playlist
     const trackIDs = this.state.playlist.map(track => track.id);
     const attributesObj = {
         acousticness: [],
@@ -80,13 +82,8 @@ class App extends Component{
       })    
       // Convert to arrays to means using forEach and reduce
       Object.keys(attributesObj).forEach(key => attributesObj[key] = attributesObj[key].reduce((a,b) => a + b) / this.state.playlist.length);
-      // Set state w/ conditional to avoid inf loop
-
-      this.setState({
-        attributes: attributesObj
-      })
-      
-      console.log(this.state)
+      // Set state
+      this.setState({attributes: attributesObj});
     })
     .catch(err => console.err('Error getting audio attributes'))
   }
@@ -101,7 +98,7 @@ class App extends Component{
         <button onClick={() => this.getPlaylist()}>
           Get Playlist
         </button>
-        <Playlist tracks={this.state.playlist} name={this.state.name} attributes={this.state.attributes}/>
+        <Playlist tracks={this.state.playlist} name={this.state.name} attributes={this.state.attributes} token={this.state.token}/>
       </div>
     );
   }
