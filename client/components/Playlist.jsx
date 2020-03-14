@@ -42,12 +42,12 @@ class Playlist extends Component {
     const params = {
         seed_tracks: seed,
         target_tempo: this.state.sliders.tempo,
-        target_danceability: this.state.sliders.danceability,
-        target_valence: this.state.sliders.valence,
+        target_danceability: this.state.sliders.danceability * .01,
+        target_valence: this.state.sliders.valence * .01,
         target_popularity: this.state.sliders.popularity,
-        target_energy: this.state.sliders.energy,
-        target_acousticness: this.state.sliders.acousticness,
-        target_instrumentalness: this.state.sliders.instrumentalness
+        target_energy: this.state.sliders.energy * .01,
+        target_acousticness: this.state.sliders.acousticness * .01,
+        target_instrumentalness: this.state.sliders.instrumentalness * .01
     };
     // Only want keys that aren't null
     const validParams = Object.keys(params)
