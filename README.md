@@ -1,6 +1,6 @@
 # Tunabaz
 
-Make better playlists! Displays aggregated playlist stats and generates recommendations based off user playlists, allowing users to guide recommendations by fine-tuning Tunable attributes (e.g. danceability and valence).
+Make better playlists! Displays aggregated playlist stats and generates recommendations from user playlists, allowing users to guide the algorithm by fine-tuning Tunable attributes (e.g. danceability and valence).
 
 Lovingly named after Molly Baz's pup, Tuna.
 
